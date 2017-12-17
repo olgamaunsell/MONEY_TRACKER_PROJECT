@@ -1,4 +1,5 @@
 require_relative('../db/sql_runner.rb')
+require( 'pry-byebug' )
 
 class Transaction
 
@@ -24,6 +25,18 @@ class Transaction
     values = [@vendor_id, @tag_id, @value, @transaction_date, @comment]
     transaction_data = SqlRunner.run(sql, values)
     @id = transaction_data.first()['id'].to_i
+  end
+
+  def vendor()
+    vendor = Vendor.find(@vendor_id)
+    binding.pry
+    return vendor
+    binding.pry
+  end
+
+  def tag()
+    tag = Tag.find(@tag_id)
+    return tag
   end
 
   def self.all()

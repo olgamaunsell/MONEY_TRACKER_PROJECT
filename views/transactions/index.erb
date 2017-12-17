@@ -1,0 +1,15 @@
+<h2>All Transactions</h2>
+<% @transactions.each do |transaction|  %>
+
+
+<p>Vendor: <%=transaction.vendor.name  %></p>
+<p>Category: <%=transaction.tag.name %></p>
+<p>Amount: <%=transaction.value %></p>
+<p>Date: <%=transaction.transaction_date %></p>
+
+
+
+
+<hr/>
+
+<% end %>

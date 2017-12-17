@@ -32,7 +32,7 @@ class Vendor
     sql = "SELECT * FROM vendors WHERE id = $1"
     values = [id]
     result = SqlRunner.run(sql, values)
-    house = Vendor.new(result.first)
+    vendor = Vendor.new(result.first)
     return vendor
   end
 

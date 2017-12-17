@@ -32,7 +32,7 @@ class Tag
     sql = "SELECT * FROM tags WHERE id = $1"
     values = [id]
     result = SqlRunner.run(sql, values)
-    house = Tag.new(result.first)
+    tag = Tag.new(result.first)
     return tag
   end
 
