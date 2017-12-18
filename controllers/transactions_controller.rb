@@ -38,3 +38,20 @@ get('/transactions/:id') do
   erb(:"transactions/show")
   # redirect to("/transactions")
 end
+
+# EDIT route
+# two stage route: find, allow user screen update
+# then update database
+
+get('/transactions/:id/edit') do
+  @vendors = Vendor.all()
+  @tags = Tag.all()
+  @transaction = Transaction.find(params[:id])
+  erb(:"transactions/edit")
+end
+
+# post('/transactions/:id') do
+#   @transaction = Transaction.new(params)
+#   @transaction.update
+#   redirect "/transactions/#{@transaction.id}"
+# end
