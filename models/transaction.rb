@@ -28,43 +28,59 @@ class Transaction
     @id = transaction_data.first()['id'].to_i
   end
 
-  def vendor()
-    vendor = Vendor.find(@vendor_id)
+  def update()
+    sql = "UPDATE transactions
+    SET
+    (
+      vendor_id,
+      tag_id,
+      amount,
+      transaction_date,
+      comment
+      ) =
+      (
+        $1, $2, $3, $4, $5
+      )
+      WHERE id = $6"
+      values = [@vendor_id, @tag_id, @amount, @transaction_date, @comment, @id]
+      SqlRunner.run( sql, values )
+    end
 
-    return vendor
+    def vendor()
+      vendor = Vendor.find(@vendor_id)
+      return vendor
+    end
+
+    def tag()
+      tag = Tag.find(@tag_id)
+      return tag
+    end
+
+    def self.all()
+      sql = "SELECT * FROM transactions"
+      values = []
+      result = SqlRunner.run(sql, values)
+      transactions = Transaction.map_items(result)
+      return transactions
+    end
+
+    def self.find(id)
+      sql = "SELECT * FROM transactions WHERE id = $1"
+      values = [id]
+      result = SqlRunner.run(sql, values)
+      transaction = Transaction.new(result.first)
+      return transaction
+    end
+
+    def self.delete_all()
+      sql = "DELETE FROM transactions"
+      values =[]
+      SqlRunner.run(sql, values)
+    end
+
+    def self.map_items(transaction_data)
+      result = transaction_data.map {|transaction| Transaction.new(transaction)}
+      return result
+    end
 
   end
-
-  def tag()
-    tag = Tag.find(@tag_id)
-    return tag
-  end
-
-  def self.all()
-    sql = "SELECT * FROM transactions"
-    values = []
-    result = SqlRunner.run(sql, values)
-    transactions = Transaction.map_items(result)
-    return transactions
-  end
-
-  def self.find(id)
-    sql = "SELECT * FROM transactions WHERE id = $1"
-    values = [id]
-    result = SqlRunner.run(sql, values)
-    transaction = Transaction.new(result.first)
-    return transaction
-  end
-
-  def self.delete_all()
-    sql = "DELETE FROM transactions"
-    values =[]
-    SqlRunner.run(sql, values)
-  end
-
-  def self.map_items(transaction_data)
-    result = transaction_data.map {|transaction| Transaction.new(transaction)}
-    return result
-  end
-
-end
