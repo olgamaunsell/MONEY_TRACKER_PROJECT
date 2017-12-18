@@ -60,8 +60,8 @@ get('/transactions/:id/edit') do
   erb(:"transactions/edit")
 end
 
-# post('/transactions/:id') do
-#   @transaction = Transaction.new(params)
-#   @transaction.update
-#   redirect "/transactions/#{@transaction.id}"
-# end
+post('/transactions/:id') do
+  @transaction = Transaction.new(params)
+  @transaction.update
+  redirect "/transactions/#{@transaction.id}"
+end
