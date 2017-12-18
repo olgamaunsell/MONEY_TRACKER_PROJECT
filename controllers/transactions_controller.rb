@@ -8,6 +8,7 @@ require_relative( '../models/tag.rb' )
 
 get('/transactions') do
   @transactions = Transaction.all()
+  @total_amount = Transaction.total_amount()
   erb(:"transactions/index")
 end
 
