@@ -29,9 +29,9 @@ class Transaction
 
   def vendor()
     vendor = Vendor.find(@vendor_id)
-    binding.pry
+  
     return vendor
-    binding.pry
+
   end
 
   def tag()

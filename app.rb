@@ -7,4 +7,5 @@ require_relative('controllers/tags_controller')
 
 get '/' do
   erb( :index )
+
 end

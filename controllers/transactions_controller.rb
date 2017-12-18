@@ -18,3 +18,13 @@ get('/transactions/new') do
   @tags = Tag.all()
   erb(:"transactions/new")
 end
+
+# CREATE route
+
+post('/transactions') do
+
+  @transaction = Transaction.new(params)
+  @transaction.save()
+  erb(:"transactions/create")
+  redirect to("/transactions")
+end
