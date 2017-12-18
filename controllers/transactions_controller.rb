@@ -26,5 +26,15 @@ post('/transactions') do
   @transaction = Transaction.new(params)
   @transaction.save()
   erb(:"transactions/create")
-  redirect to("/transactions")
+  # redirect to("/transactions")
+end
+
+# SHOW route
+
+get('/transactions/:id') do
+
+  id = params[:id]
+  @transaction = Transaction.find(id)
+  erb(:"transactions/show")
+  # redirect to("/transactions")
 end

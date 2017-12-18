@@ -5,7 +5,7 @@
 <p>Category: <%=transaction.tag.name %></p>
 <p>Amount: <%=transaction.amount %></p>
 <p>Date: <%=transaction.transaction_date %></p>
-
+<a href="/transactions/<%= transaction.id %>">Transaction details</a>
 <hr/>
 
 <% end %>

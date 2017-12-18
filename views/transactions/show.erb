@@ -1,0 +1,13 @@
+<h2>Transaction details</h2>
+<p>Vendor: <%= @transaction.vendor.name %></p>
+<p>Category: <%= @transaction.tag.name %></p>
+<p>Amount: <%= @transaction.amount %></p>
+<p>Date: <%= @transaction.transaction_date %></p>
+
+<form class="" action="/transactions/<%= @transaction.id %>/edit" method="get">
+  <input class="button" type="submit" name="" value="Edit Transaction">
+</form>
+
+<form class="" action="/transactions/<%= @transaction.id %>/delete" method="post">
+  <input class="button" type="submit" name="" value="Delete Transaction">
+</form>
