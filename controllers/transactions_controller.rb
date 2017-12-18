@@ -10,3 +10,11 @@ get('/transactions') do
   @transactions = Transaction.all()
   erb(:"transactions/index")
 end
+
+# NEW route
+
+get('/transactions/new') do
+  @vendors = Vendor.all()
+  @tags = Tag.all()
+  erb(:"transactions/new")
+end

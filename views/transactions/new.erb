@@ -1,0 +1,28 @@
+<h2>New Transaction</h2>
+<form class="" action="/transactions" method="POST">
+  <label for="amount-input">Amount:</label>
+  <input id="amount-input"type="number" name="value" value="">
+
+  <label for="date-input">Date:</label>
+  <input id="date-input"type="date" name="transaction_date" value="">
+
+  <div class="form-drop-down">
+       <label for="vendor-select">Select Vendor:</label>
+       <select name="vendor_id" id="vendor-select">
+         <% @vendors.each do |vendor| %>
+             <option value=<%= vendor.id %>><%= vendor.name.capitalize %></option>
+         <% end %>
+       </select>
+  </div>
+
+  <div class="form-drop-down">
+       <label for="tag-select">Select Tag:</label>
+       <select name="tag_id" id="vendor-select">
+         <% @tags.each do |tag| %>
+             <option value=<%= tag.id %>><%= tag.name.capitalize %></option>
+         <% end %>
+       </select>
+  </div>
+  <br>
+  <input class="side-button" type="submit" name="" value="Create Transaction">
+</form>
