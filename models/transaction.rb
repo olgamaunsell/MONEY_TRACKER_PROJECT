@@ -3,46 +3,50 @@ require( 'pry-byebug' )
 
 class Transaction
 
-  attr_reader(:id, :vendor_id, :tag_id, :amount, :transaction_date, :comment)
+    attr_reader(:id, :vendor_id, :tag_id, :amount, :transaction_date, :comment)
 
-  #extension field on transactions table - month_id ?
+    def initialize(options)
+      @id = options['id'].to_i if options['id']
+      @vendor_id = options['vendor_id'].to_i
+      @tag_id = options['tag_id'].to_i
+      @amount = options['amount'].to_f.round(2)
+      @transaction_date = options['transaction_date']
+      @comment = options['comment'] if options['comment'] || nil
+    end
 
-  def initialize(options)
-    @id = options['id'].to_i if options['id']
-    @vendor_id = options['vendor_id'].to_i
-    @tag_id = options['tag_id'].to_i
-    #Convert from pounds to pence before storing in database
-    @amount = options['amount'].to_f.round(2)
-    @transaction_date = options['transaction_date']
-    @comment = options['comment'] if options['comment'] || nil
-  end
+    def save()
+      sql = "INSERT INTO transactions
+      (vendor_id, tag_id, amount, transaction_date, comment)
+      VALUES($1, $2, $3, $4, $5)
+      RETURNING *"
 
-  def save()
-    sql = "INSERT INTO transactions
-    (vendor_id, tag_id, amount, transaction_date, comment)
-    VALUES($1, $2, $3, $4, $5)
-    RETURNING *"
+      values = [@vendor_id, @tag_id, @amount, @transaction_date, @comment]
+      transaction_data = SqlRunner.run(sql, values)
+      @id = transaction_data.first()['id'].to_i
+    end
 
-    values = [@vendor_id, @tag_id, @amount, @transaction_date, @comment]
-    transaction_data = SqlRunner.run(sql, values)
-    @id = transaction_data.first()['id'].to_i
-  end
-
-  def update()
-    sql = "UPDATE transactions
-    SET
-    (
-      vendor_id,
-      tag_id,
-      amount,
-      transaction_date,
-      comment
-      ) =
+    def update()
+      sql = "UPDATE transactions
+      SET
       (
-        $1, $2, $3, $4, $5
+        vendor_id,
+        tag_id,
+        amount,
+        transaction_date,
+        comment
+        ) =
+      (
+          $1, $2, $3, $4, $5
       )
       WHERE id = $6"
       values = [@vendor_id, @tag_id, @amount, @transaction_date, @comment, @id]
+      SqlRunner.run( sql, values )
+    end
+
+    def delete()
+      sql = "DELETE FROM transactions
+      WHERE id = $1"
+      values = [@id]
       SqlRunner.run( sql, values )
     end
 

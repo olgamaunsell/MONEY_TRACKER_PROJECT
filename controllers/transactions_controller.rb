@@ -39,8 +39,18 @@ get('/transactions/:id') do
   # redirect to("/transactions")
 end
 
+# DELETE route
+
+post('/transactions/:id/delete') do
+  id = params[:id]
+  @transaction = Transaction.find(id)
+  @transaction.delete()
+
+  redirect "/transactions"
+
+end
 # EDIT route
-# two stage route: find, allow user screen update
+# two stages: find transaction, allow user screen update
 # then update database
 
 get('/transactions/:id/edit') do
