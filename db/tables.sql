@@ -25,7 +25,7 @@ CREATE TABLE transactions(
   id SERIAL4 PRIMARY KEY,
   vendor_id INT4 REFERENCES vendors(id),
   tag_id INT4 REFERENCES tags(id),
-  value INT2,
+  amount DECIMAL,
   transaction_date DATE,
   comment VARCHAR(255),
   month_id INT4 REFERENCES months(id)

@@ -62,7 +62,7 @@ transport_tag.save()
 transaction1 = Transaction.new({
   "vendor_id" => vendor1.id,
   "tag_id" => food_tag.id,
-  "value" => 1000,
+  "amount" => 11.33,
   "transaction_date" => 'December 12 2017'
   })
 
@@ -71,7 +71,7 @@ transaction1.save()
 transaction2 = Transaction.new({
   "vendor_id" => vendor2.id,
   "tag_id" => drinks_tag.id,
-  "value" => 700,
+  "amount" => 6.90,
   "transaction_date" => 'December 10 2017',
   "comment" => "G & T"
   })
@@ -81,7 +81,7 @@ transaction2.save()
 transaction3 = Transaction.new({
   "vendor_id" => vendor3.id,
   "tag_id" => gift_tag.id,
-  "value" => 2499,
+  "amount" => 24.99,
   "transaction_date" => 'December 15 2017'
   })
 
@@ -90,7 +90,7 @@ transaction3.save()
 transaction4 = Transaction.new({
   "vendor_id" => vendor5.id,
   "tag_id" => clothes_tag.id,
-  "value" => 3499,
+  "amount" => 34.49,
   "transaction_date" => 'December 11 2017',
   "comment" => "Dress"
   })
@@ -100,7 +100,7 @@ transaction4.save()
 transaction5 = Transaction.new({
   "vendor_id" => vendor2.id,
   "tag_id" => drinks_tag.id,
-  "value" => 310,
+  "amount" => 3.10,
   "transaction_date" => 'December 15 2017',
   "comment" => "Beer"
   })
@@ -110,7 +110,7 @@ transaction5.save()
 transaction6 = Transaction.new({
   "vendor_id" => vendor4.id,
   "tag_id" => transport_tag.id,
-  "value" => 160,
+  "amount" => 1.60,
   "transaction_date" => 'December 14 2017',
   "comment" => "Bus"
   })
