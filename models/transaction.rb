@@ -51,7 +51,7 @@ class Transaction
     sql = "SELECT * FROM transactions WHERE id = $1"
     values = [id]
     result = SqlRunner.run(sql, values)
-    house = Transaction.new(result.first)
+    transaction = Transaction.new(result.first)
     return transaction
   end
 
