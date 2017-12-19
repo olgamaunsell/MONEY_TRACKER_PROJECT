@@ -1,13 +1,35 @@
-<h2>All Transactions</h2>
-<% @transactions.each do |transaction|  %>
+<h2>Transactions</h2>
 
-<p>Vendor: <%=transaction.vendor.name  %></p>
-<p>Category: <%=transaction.tag.name %></p>
-<p>Amount: <%=transaction.amount %></p>
-<p>Date: <%=transaction.transaction_date %></p>
-<a href="/transactions/<%= transaction.id %>">Transaction details</a>
-<hr/>
+<table>
+  <caption>Transactions</caption>
+  <thead>
+    <tr>
+      <th scope="col">Vendor</th>
+      <th scope="col">Tag</th>
+      <th scope="col">Date</th>
+      <th scope="col">Amount</th>
+      <th scope="col">Comment</th>
+      <th scope="col">Transaction Details</th>
+    </tr>
+  </thead>
+<tbody>
+  <% @transactions.each do |transaction|  %>
+  <tr>
+    <td><%= transaction.vendor.name %></td>
+    <td><%= transaction.tag.name %></td>
+    <td><%= transaction.transaction_date %></td>
+    <td><%= transaction.amount %></td>
+    <td><%= transaction.comment %></td>
 
-<% end %>
-
-<p>Transactions - Total Amount: £ <%= @total_amount %></p>
+    <td><a href="/transactions/<%= transaction.id %>">Transaction details</a></td>
+  </tr>
+  <% end %>
+  <td></td>
+</tbody>
+<tfoot>
+  <tr>
+    <th scope="row" colspan="2">Total Transactions</th>
+    <td colspan="2"><%= @total_amount %></td>
+  </tr>
+</tfoot>
+</table>
