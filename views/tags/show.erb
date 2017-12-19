@@ -1,4 +1,6 @@
-<p>Name: <%= @tag.name %></p>
+<p>Tag name: <%= @tag.name %></p>
+
+<p><%= @tag.name %> - Transactions total amount: £ <%=@tag_total_amount  %></p>
 
 <form class="" action="/tags/<%= @tag.id %>/edit" method="get">
   <input class=""type="submit" name="" value="Edit Tag">
