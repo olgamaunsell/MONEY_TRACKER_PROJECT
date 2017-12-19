@@ -1,12 +1,18 @@
-<p>Tag name: <%= @tag.name %></p>
+<table>
+  <tr>
+      <th></th>
+      <th scope="col"><%= @tag.name %></th>
+  </tr>
 
-<p><%= @tag.name %> - Transactions total amount: £ <%=@tag_total_amount  %></p>
-
+  <tr>
+    <td>Total Expenditure £ </td>
+    <td><%= @tag_total_amount %></td>
+  </tr>
+</table>
+<br>
 <form class="" action="/tags/<%= @tag.id %>/edit" method="get">
   <input class=""type="submit" name="" value="Edit Tag">
 
 <!-- Adjust class above later using button styling -->
-
-<!-- Don't want to offer delete of tag - as history of transactions won't display/work -->
 
 </form>

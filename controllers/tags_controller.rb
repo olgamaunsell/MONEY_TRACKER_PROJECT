@@ -7,12 +7,29 @@ get '/tags' do
   erb ( :"tags/index" )
 end
 
+# NEW route
+
+get('/tags/new') do
+  erb(:"tags/new")
+end
+
+# CREATE route
+
+post('/tags') do
+
+  @tag = Tag.new(params)
+  @tag.save()
+
+  redirect to("/tags")
+end
+
+# SHOW route
+
 get '/tags/:id' do
   @tag = Tag.find(params['id'].to_i)
   @tag_total_amount = Transaction.tag_total_amount(@tag.id)
   erb( :"tags/show" )
 end
-
 
 # EDIT route
 

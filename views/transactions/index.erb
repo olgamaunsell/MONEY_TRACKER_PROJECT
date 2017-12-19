@@ -1,7 +1,9 @@
 <h2>Transactions</h2>
 
+<a href="/transactions/new">New Transaction</a>
+
+<p> </p>
 <table>
-  <caption>Transactions</caption>
   <thead>
     <tr>
       <th scope="col">Vendor</th>
@@ -24,9 +26,12 @@
     <td><a href="/transactions/<%= transaction.id %>">Transaction details</a></td>
   </tr>
   <% end %>
-  <td></td>
+  <tr class="blank_row">
+    <td colspan="6"></td>
+  </tr>
 </tbody>
 <tfoot>
+
   <tr>
     <th scope="row" colspan="5">Total Transactions</th>
     <td colspan="1">£ <%= @total_amount %></td>
