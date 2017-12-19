@@ -7,6 +7,7 @@ require_relative( '../models/tag.rb' )
 # INDEX - show all transactions
 
 get('/transactions') do
+  @tags = Tag.all()
   @transactions = Transaction.all()
   @total_amount = Transaction.total_amount()
   erb(:"transactions/index")

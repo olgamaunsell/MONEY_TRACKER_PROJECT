@@ -91,7 +91,17 @@ class Transaction
       sql = "SELECT SUM (amount) FROM transactions"
       values = []
       total_amount = SqlRunner.run(sql, values)
-    
+
       return total_amount.first()['sum'].to_f
+    end
+
+    def self.tag_total_amount(tag_id)
+      sql = "SELECT SUM (amount) FROM transactions
+      WHERE tag_id = $1"
+
+      values = [tag_id]
+      tag_total_amount = SqlRunner.run(sql, values)
+
+      return tag_total_amount.first()['sum'].to_f
     end
   end
