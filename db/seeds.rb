@@ -1,6 +1,7 @@
 require_relative('../models/transaction')
 require_relative('../models/vendor')
 require_relative('../models/tag')
+require_relative('../models/budget')
 require( 'pry-byebug' )
 
 Transaction.delete_all()
@@ -116,6 +117,16 @@ transaction6 = Transaction.new({
   })
 
 transaction6.save()
+
+budget_01 = Budget.new({
+  "month_no" => 12,
+  "year" => 2017,
+  "name" => "December Food Budget",
+  "tag_id" => food_tag.id,
+  "monthly_limit" => 50.00
+  })
+
+budget_01.save()
 
 # binding.pry
 # nil

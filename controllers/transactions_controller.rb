@@ -10,6 +10,10 @@ get('/transactions') do
   @tags = Tag.all()
   @transactions = Transaction.all()
   @total_amount = Transaction.total_amount()
+  # Extension- monthly budget and over budget can be refactored into method
+  # within transaction.rb
+  @monthly_budget = 100.00
+  @over_budget = (@total_amount - @monthly_budget).round(2)
   erb(:"transactions/index")
 end
 
