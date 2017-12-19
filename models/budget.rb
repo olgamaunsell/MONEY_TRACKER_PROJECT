@@ -37,6 +37,11 @@ class Budget
     SqlRunner.run( sql, values )
   end
 
+  def tag()
+    tag = Tag.find(@tag_id)
+    return tag
+  end
+  
   def self.all()
     sql = "SELECT * FROM budgets"
     values = []

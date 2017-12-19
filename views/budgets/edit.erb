@@ -1,0 +1,27 @@
+<h2>Edit Budget</h2>
+<form class="" action="/budgets/<%= @budget.id %>" method="POST">
+
+<!-- month display only ?-->
+<!-- year display only ?-->
+
+  <label for="name-update">Name:</label>
+  <input id="name-update" type="text" name="name" value="<%= @budget.name %>">
+
+  <div class="form-drop-down">
+    <label for="tag-select">Tag:</label>
+       <select name="tag_id" id="tag-select"> selected="<%= @budget.tag_id  %>">
+         <% @tags.each do |tag| %>
+           <% if tag.id == @budget.tag_id %>
+             <option value=<%= tag.id %> selected><%= tag.name.capitalize %></option>
+           <% else %>
+             <option value=<%= tag.id %>><%= tag.name.capitalize %></option>
+           <% end %>
+         <% end %>
+       </select>
+  </div>
+
+  <label for="monthly-limit-update">Name:</label>
+  <input id="monthly-limit-update" type="number" name="monthly_limit" value="<%= @budget.monthly_limit %>">
+
+  <input class="side-button" type="submit" name="" value="Update Budget">
+</form>

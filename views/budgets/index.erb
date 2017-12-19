@@ -1,0 +1,30 @@
+<h2>Budgets</h2>
+
+<a href="/budgets/new">New Budget</a>
+
+<p> </p>
+<table>
+  <thead>
+    <tr>
+      <th scope="col">Month</th>
+      <th scope="col">Year</th>
+      <th scope="col">Name</th>
+      <th scope="col">Tag</th>
+      <th scope="col">Monthly Limit</th>
+      <th scope="col">Budget Details</th>
+    </tr>
+  </thead>
+
+  <% @budgets.each do |budget| %>
+  <tr>
+<!-- need to convert the number to month name -->
+    <td><%= budget.month_no %></td>
+    <td><%= budget.year %></td>
+    <td><%= budget.name %></td>
+    <td><%= budget.tag.name %></td>
+    <td><%= budget.monthly_limit %></td>
+    <td><a href="/budgets/<%= budget.id %>"></td>
+    <td></td>
+  </tr>
+  <% end %>
+</table>

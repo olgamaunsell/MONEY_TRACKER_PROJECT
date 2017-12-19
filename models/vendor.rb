@@ -20,6 +20,14 @@ class Vendor
     @id = vendor_data.first()['id'].to_i
   end
 
+  def update()
+    sql = "UPDATE vendors
+    SET name = $1
+    WHERE id = $2"
+    values = [@name, @id]
+    SqlRunner.run( sql, values )
+  end
+  
   def self.all()
     sql = "SELECT * FROM vendors"
     values = []
