@@ -4,15 +4,19 @@
   <div class="form-drop-down">
        <label for="month-select">Month:</label>
        <select name="month_no" id="month-select">
-         <% @months.each do |index, month| %>
-             <option value=<%= index %>><%= month %></option>
+         <% @months.each do |month_no, month_name| %>
+             <option value=<%= month_no %>><%= month_name %></option>
          <% end %>
        </select>
   </div>
 
-  <label for="month-input">Year:</label>
-  <input id="month-input" type="text" name="year" value="">
-
+  <div class="form-drop-down">
+    <label for="month-select">Year:</label>
+    <select name="year" id="year-select">
+      <option value="2017">2017</option>
+      <option value="2018">2018</option>
+  </div>
+  
   <label for="name-input">Name:</label>
   <input id="name-input" type="text" name="name" value="">
 

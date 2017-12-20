@@ -1,8 +1,9 @@
 require_relative('../db/sql_runner.rb')
+require( 'pry-byebug' )
 
 class Budget
 
-  attr_reader(:id, :month_no, :year, :name, :tag_id, :monthly_limit)
+  attr_reader(:id, :month_no, :year, :name, :tag_id)
 
   def initialize(options)
     @id = options['id'].to_i if options['id']
@@ -10,7 +11,21 @@ class Budget
     @year = options['year']
     @name = options['name']
     @tag_id = options['tag_id']
-    @monthly_limit = options['monthly_limit']
+    @monthly_limit = options['monthly_limit'].to_f.round(2)
+  end
+
+  def monthly_limit ()
+    monthly_limit = display_2_dec_places(@monthly_limit)
+    return monthly_limit
+  end
+
+  def display_2_dec_places(amount)
+    amount_s = amount.to_s
+    amount_arr = amount_s.split('')
+    if amount_arr[-3] != '.'
+      amount_arr.insert(-1,'0')
+    end
+    return amount = amount_arr.join()
   end
 
   def save()
@@ -42,14 +57,29 @@ class Budget
     return tag
   end
 
-  # def month_no(month_name)
-  #   month_no = Month.find(month_name)
-  #   return month_no
-  # end
+  def month_name()
+    month_name = Month.find_month_name(@month_no.to_s)
+  end
+
+  def mth_yr_tag_tot_amt()
+    actual_spend = Transaction.mth_yr_tag_tot_amt(@month_no, @year, @tag_id)
+    actual_spend_display = display_2_dec_places(actual_spend)
+    return actual_spend_display
+  end
+
+  def remaining_amount()
+    actual_spend = mth_yr_tag_tot_amt().to_f
+    remaining_amount = @monthly_limit - actual_spend
+    remaining_amount_display = display_2_dec_places(remaining_amount)
+    return remaining_amount_display
+  end
+
+
 
   def self.all()
     sql = "SELECT * FROM budgets
-    ORDER BY budgets.name ASC"
+    ORDER BY budgets.year DESC,
+    budgets.month_no DESC"
     values = []
     result = SqlRunner.run(sql, values)
     budgets = Budget.map_items(result)

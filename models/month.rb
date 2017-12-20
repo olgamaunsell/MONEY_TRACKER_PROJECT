@@ -15,9 +15,13 @@ class Month
           }
   end
 
-  def self.find(month_no)
-    index = month_no - 1
-    month_name = self.all[index]
+  def self.find_month_number(month_name)
+    month_no = self.all().index(month_name)
+    return month_no
+  end
+
+  def self.find_month_name(month_no)
+    month_name = self.all()[month_no]
     return month_name
   end
 end

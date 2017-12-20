@@ -1,15 +1,19 @@
-<table>
-  <tr>
-      <th></th>
-      <th scope="col"><%= @budget.name %></th>
-  </tr>
+</form>
 
+<h2>Budget details</h2>
+<p>Month: <%= @budget.month_name %></p>
+<p>Year: <%= @budget.year %></p>
+<p>Name: <%= @budget.name %></p>
+<p>Tag: <%= @budget.tag.name %></p>
+<p>Monthly Limit: <%= @budget.monthly_limit %></p>
 
-</table>
-<br>
+<p>Actual Spend: £ <%=@actual_spend %> </p>
+<p>Remaining Amount: £ <%=@remaining_amount %> </p>
+
 <form class="" action="/budgets/<%= @budget.id %>/edit" method="get">
-  <input class=""type="submit" name="" value="Edit Budget">
+  <input class="button" type="submit" name="" value="Edit Budget">
+</form>
 
-<!-- Adjust class above later using button styling -->
-
+<form class="" action="/budgets/<%= @budget.id %>/delete" method="post">
+  <input class="button" type="submit" name="" value="Delete Budget">
 </form>

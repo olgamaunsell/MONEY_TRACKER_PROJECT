@@ -3,7 +3,7 @@ require( 'pry-byebug' )
 
 class Transaction
 
-    attr_reader(:id, :vendor_id, :tag_id, :amount, :transaction_date, :comment)
+    attr_reader(:id, :vendor_id, :tag_id, :transaction_date, :comment)
 
     def initialize(options)
       @id = options['id'].to_i if options['id']
@@ -12,6 +12,17 @@ class Transaction
       @amount = options['amount'].to_f.round(2)
       @transaction_date = options['transaction_date']
       @comment = options['comment'] if options['comment'] || nil
+    end
+
+    def amount
+      amount_s = @amount.to_s
+      amount_arr = amount_s.split('')
+      if amount_arr[-3] != '.'
+        amount_arr.insert(-1,'0')
+      end
+
+      amount = amount_arr.join()
+      return amount
     end
 
     def save()
@@ -76,15 +87,27 @@ class Transaction
       return transaction
     end
 
-    def self.find_by_month_year(month, year)
+    def self.find_by_month_year(month_no, year)
       sql = "SELECT * FROM transactions
       WHERE EXTRACT(MONTH FROM transaction_date) = $1 AND
       EXTRACT(YEAR FROM transaction_date) = $2"
 
-      values = [month, year]
+      values = [month_no, year]
       result = SqlRunner.run(sql, values)
       month_transactions = Transaction.map_items(result)
       return month_transactions
+    end
+
+    def self.find_by_month_year_tag(month_no, year, tag_id)
+      sql = "SELECT * FROM transactions
+      WHERE EXTRACT(MONTH FROM transaction_date) = $1 AND
+      EXTRACT(YEAR FROM transaction_date) = $2 AND
+      tag_id = $3"
+
+      values = [month_no, year, tag_id]
+      result = SqlRunner.run(sql, values)
+      tag_month_transactions = Transaction.map_items(result)
+      return tag_month_transactions
     end
 
     def self.delete_all()
@@ -106,7 +129,20 @@ class Transaction
       return total_amount.first()['sum'].to_f
     end
 
-    def self.tag_total_amount(tag_id)
+    def self.mth_yr_tag_tot_amt(month_no, year, tag_id)
+      sql = "SELECT SUM (amount) FROM transactions
+      WHERE EXTRACT(MONTH FROM transaction_date) = $1 AND
+      EXTRACT(YEAR FROM transaction_date) = $2 AND
+      tag_id = $3"
+
+      values = [month_no, year, tag_id]
+      mth_yr_tag_tot_amt = SqlRunner.run(sql, values)
+      return mth_yr_tag_tot_amt.first()['sum'].to_f.round(2)
+  
+    end
+
+# this can be refactored out when above method working
+    def self.tag_month_total_amount(tag_id)
       sql = "SELECT SUM (amount) FROM transactions
       WHERE tag_id = $1"
 

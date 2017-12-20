@@ -128,5 +128,13 @@ budget_01 = Budget.new({
 
 budget_01.save()
 
+budget_01 = Budget.new({
+  "month_no" => 01,
+  "year" => 2018,
+  "name" => "January Drinks Budget",
+  "tag_id" => food_tag.id,
+  "monthly_limit" => 40.00
+  })
+
 # binding.pry
 # nil
