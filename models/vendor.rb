@@ -27,9 +27,10 @@ class Vendor
     values = [@name, @id]
     SqlRunner.run( sql, values )
   end
-  
+
   def self.all()
-    sql = "SELECT * FROM vendors"
+    sql = "SELECT * FROM vendors
+    ORDER BY vendors.name ASC"
     values = []
     result = SqlRunner.run(sql, values)
     vendors = Vendor.map_items(result)

@@ -27,9 +27,10 @@ class Tag
     values = [@name, @id]
     SqlRunner.run( sql, values )
   end
-  
+
   def self.all()
-    sql = "SELECT * FROM tags"
+    sql = "SELECT * FROM tags
+    ORDER BY tags.name ASC"
     values = []
     result = SqlRunner.run(sql, values)
     tags = Tag.map_items(result)

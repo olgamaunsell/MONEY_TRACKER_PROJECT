@@ -61,7 +61,7 @@ class Transaction
     end
 
     def self.all()
-      sql = "SELECT * FROM transactions"
+      sql = "SELECT * FROM transactions ORDER BY transactions.transaction_date DESC"
       values = []
       result = SqlRunner.run(sql, values)
       transactions = Transaction.map_items(result)
@@ -74,6 +74,17 @@ class Transaction
       result = SqlRunner.run(sql, values)
       transaction = Transaction.new(result.first)
       return transaction
+    end
+
+    def self.find_month_year(month, year)
+      sql = "SELECT * FROM transactions
+      WHERE EXTRACT(MONTH FROM transaction_date) = $1 AND
+      EXTRACT(YEAR FROM transaction_date) = $2"
+
+      values = [month, year]
+      result = SqlRunner.run(sql, values)
+      month_transactions = Transaction.map_items(result)
+      return month_transactions
     end
 
     def self.delete_all()

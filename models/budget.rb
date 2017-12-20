@@ -41,9 +41,15 @@ class Budget
     tag = Tag.find(@tag_id)
     return tag
   end
-  
+
+  def month_name()
+    month_name = Month.find(@month_no)
+    return month_name
+  end
+
   def self.all()
-    sql = "SELECT * FROM budgets"
+    sql = "SELECT * FROM budgets
+    ORDER BY budgets.name ASC"
     values = []
     result = SqlRunner.run(sql, values)
     budgets = Budget.map_items(result)

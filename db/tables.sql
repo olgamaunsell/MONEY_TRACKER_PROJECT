@@ -19,7 +19,8 @@ CREATE TABLE budgets(
   year INT2,
   name VARCHAR(255),
   tag_id INT4 REFERENCES tags(id),
-  monthly_limit DECIMAL
+  monthly_limit DECIMAL,
+  UNIQUE (month_no, year, tag_id)
 );
 
 CREATE TABLE transactions(
