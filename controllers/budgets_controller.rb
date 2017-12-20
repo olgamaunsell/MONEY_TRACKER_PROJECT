@@ -25,7 +25,7 @@ post('/budgets') do
   @budget = Budget.new(params)
   @budget.save()
 
-  redirect to("/budgets")
+  # redirect to("/budgets")
 end
 
 # SHOW route

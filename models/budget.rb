@@ -42,10 +42,10 @@ class Budget
     return tag
   end
 
-  def month_name()
-    month_name = Month.find(@month_no)
-    return month_name
-  end
+  # def month_no(month_name)
+  #   month_no = Month.find(month_name)
+  #   return month_no
+  # end
 
   def self.all()
     sql = "SELECT * FROM budgets

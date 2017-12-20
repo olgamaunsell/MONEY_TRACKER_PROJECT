@@ -76,7 +76,7 @@ class Transaction
       return transaction
     end
 
-    def self.find_month_year(month, year)
+    def self.find_by_month_year(month, year)
       sql = "SELECT * FROM transactions
       WHERE EXTRACT(MONTH FROM transaction_date) = $1 AND
       EXTRACT(YEAR FROM transaction_date) = $2"
