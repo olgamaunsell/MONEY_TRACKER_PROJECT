@@ -7,7 +7,7 @@
   font-family: 'Special Elite', cursive;
 }
 
-.button {
+/*.button {
 font-size: 16px;
 padding: 10px 20px;
 border-radius: 20px;
@@ -15,29 +15,25 @@ float: left;
 background-color: #41c1f4;
 color: #fff;
 border: 2px solid #f45b41;
-}
+}*/
 
-.btn--new {
-  background-color: darkred;
+.button {
+  background-color: #8342f4;
   border-radius: 20px;
-  border: 2px solid #f45b41;
-  padding: 10px 20px;
+  padding: 10px 10px;
   color: #fff;
   font-size: 10px;
+  float: left;
 }
 
-.btn--new:hover {
+.button:hover {
   background-color: #730000;
 }
-
+/*
 .btn--edit:hover {
   background-color: #495C27;
 }
 
 .btn--edit {
   background-color: darkolivegreen;
-}
-
-.btn--wrapper {
-  margin: 0px 0px 30px 0px;
-}
+}*/

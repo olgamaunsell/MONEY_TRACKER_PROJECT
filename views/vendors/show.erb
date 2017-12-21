@@ -3,7 +3,9 @@
       <th></th>
       <th scope="col"><%= @vendor.name %></th>
   </tr>
-
+  <tr>
+    <td></td>
+  </tr>
   <tr>
     <td>Total Expenditure £ </td>
     <td><%= @vendor_total_amount %></td>
@@ -11,8 +13,6 @@
 </table>
 <br>
 <form class="" action="/vendors/<%= @vendor.id %>/edit" method="get">
-  <input class=""type="submit" name="" value="Edit Vendor">
-
-<!-- Adjust class above later using button styling -->
+  <input class="button"type="submit" name="" value="Edit Vendor">
 
 </form>

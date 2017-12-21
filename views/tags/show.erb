@@ -1,9 +1,11 @@
 <table>
   <tr>
       <th></th>
-      <th scope="col"><%= @tag.name %></th>
+      <th scope="col" ><%= @tag.name %></th>
   </tr>
-
+  <tr>
+    <td></td>
+  </tr>
   <tr>
     <td>Total Expenditure £ </td>
     <td><%= @tag_total_amount %></td>
@@ -11,8 +13,5 @@
 </table>
 <br>
 <form class="" action="/tags/<%= @tag.id %>/edit" method="get">
-  <input class=""type="submit" name="" value="Edit Tag">
-
-<!-- Adjust class above later using button styling -->
-
+  <input class="button"type="submit" name="" value="Edit Tag">
 </form>
