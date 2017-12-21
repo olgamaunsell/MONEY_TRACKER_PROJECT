@@ -77,7 +77,7 @@ class Budget
 
   def remaining_amount()
     actual_spend = mth_yr_tag_tot_amt().to_f
-    remaining_amount = @monthly_limit - actual_spend
+    remaining_amount = (@monthly_limit - actual_spend).round(2)
     remaining_amount_display = display_2_dec_places(remaining_amount)
     return remaining_amount_display
   end
