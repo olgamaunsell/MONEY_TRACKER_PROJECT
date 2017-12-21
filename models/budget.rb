@@ -85,7 +85,7 @@ class Budget
   def self.current_mth_year_spend()
     current_month = Transaction.current_month_no()
     current_year = Transaction.current_year()
-    current_month_year_budget = Transaction.mth_yr_tot_amt(current_month, current_year)
+    current_month_year_budget = Budget.mth_yr_tot_amt(current_month, current_year)
     return current_month_year_budget
   end
 
@@ -125,7 +125,6 @@ class Budget
     values = [month_no, year]
     mth_yr_tot_amt = SqlRunner.run(sql, values)
     return mth_yr_tot_amt.first()['sum'].to_f.round(2)
-
   end
 
 end

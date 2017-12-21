@@ -1,6 +1,7 @@
 require( 'sinatra' )
 require( 'sinatra/contrib/all' )
 require_relative( '../models/budget.rb' )
+require_relative( '../models/transaction.rb' )
 require_relative( '../models/tag.rb' )
 require_relative( '../models/month.rb' )
 # require( 'pry-byebug' )

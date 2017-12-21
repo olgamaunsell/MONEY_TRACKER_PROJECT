@@ -37,6 +37,8 @@
   </tr>
 </tfoot>
 </table>
-<% if @over_budget > 0 %>
-  <p>Hey Olga you've exceeded your budget this month by £ <%=@over_budget %> !</p>
-<% end %>
+<div class="Warning">
+  <% if @over_budget > 0 %>
+    <p>Hey Olga you've exceeded your budget this month by £ <%=@over_budget %> !</p>
+  <% end %>
+</div>

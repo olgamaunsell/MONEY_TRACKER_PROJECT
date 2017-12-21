@@ -7,14 +7,10 @@ require_relative( '../models/tag.rb' )
 # INDEX - show all transactions
 
 get('/transactions') do
-  p params
+  @total_amount = Transaction.total_amount()
   @tags = Tag.all()
   @transactions = Transaction.all()
-  @total_amount = Transaction.total_amount()
-  # Extension- monthly budget and over budget can be refactored into method
-  # within transaction.rb
-  @monthly_budget = 50.00
-  @over_budget = (@total_amount - @monthly_budget).round(2)
+  @over_budget = Transaction.current_mth_year_over_budget()
   erb(:"transactions/index")
 end
 

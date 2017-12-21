@@ -67,3 +67,8 @@ main {
 photo {
   background: url('/images/money.jpg')
 }
+
+.warning {
+  color: red;
+  font-size: 1.2rem;
+}

@@ -94,6 +94,16 @@ class Transaction
       return current_month_year_spend
     end
 
+    def self.current_mth_year_over_budget()
+
+      current_mth_spend = Transaction.current_mth_year_spend()
+      current_mth_budget = Budget.current_mth_year_spend()
+      
+      # If over budget the method will return a positive amount
+      over_budget = (current_mth_spend - current_mth_budget).round(2)
+      return over_budget
+    end
+
     def self.all()
       sql = "SELECT * FROM transactions ORDER BY transactions.transaction_date DESC"
       values = []
