@@ -68,7 +68,7 @@ class Budget
     end
     return amount = amount_arr.join()
   end
-  
+
   def mth_yr_tag_tot_amt()
     actual_spend = Transaction.mth_yr_tag_tot_amt(@month_no, @year, @tag_id)
     actual_spend_display = display_2_dec_places(actual_spend)
@@ -80,6 +80,13 @@ class Budget
     remaining_amount = @monthly_limit - actual_spend
     remaining_amount_display = display_2_dec_places(remaining_amount)
     return remaining_amount_display
+  end
+
+  def self.current_mth_year_spend()
+    current_month = Transaction.current_month_no()
+    current_year = Transaction.current_year()
+    current_month_year_budget = Transaction.mth_yr_tot_amt(current_month, current_year)
+    return current_month_year_budget
   end
 
   def self.all()
@@ -109,6 +116,16 @@ class Budget
   def self.map_items(budget_data)
     result = budget_data.map {|budget| Budget.new(budget)}
     return result
+  end
+
+  def self.mth_yr_tot_amt(month_no, year)
+    sql = "SELECT SUM (monthly_limit) FROM budgets
+    WHERE month_no = $1 AND year = $2"
+
+    values = [month_no, year]
+    mth_yr_tot_amt = SqlRunner.run(sql, values)
+    return mth_yr_tot_amt.first()['sum'].to_f.round(2)
+
   end
 
 end

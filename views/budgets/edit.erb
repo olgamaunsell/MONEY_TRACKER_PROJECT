@@ -3,10 +3,10 @@
 
   <div class="form-drop-down">
        <label for="month-select">Month:</label>
-       <select name="month_no" id="month-select"> selected="<%= @budget.month_no %>">
+       <select name="month_no" id="month-select" selected="<%= @budget.month_no %>">
          <% @months.each do |month_no, month_name| %>
             <% if month_no == @budget.month_no %>
-                <option value=<%= month_no %>selected><%= month_name %></option>
+                <option value=<%= month_no %> selected ><%= month_name %></option>
             <% else %>
                 <option value=<%= month_no %>><%= month_name %></option>
             <% end %>
@@ -15,14 +15,14 @@
   </div>
 
   <div class="form-drop-down">
-    <label for="month-select">Year:</label>
+    <label for="year-select">Year:</label>
     <select name="year" id="year-select">
       <option value="2017"
       <%= "selected" if @budget.year == "2017" %>>2017</option>
       <option value="2018"
       <%= "selected" if @budget.year == "2018" %>>2018</option>
     </select>
-      
+
   </div>
 
   <div class="form-drop-down">

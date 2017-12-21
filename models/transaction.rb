@@ -1,5 +1,6 @@
 require_relative('../db/sql_runner.rb')
 require('date')
+require( 'pry-byebug' )
 
 class Transaction
 
@@ -71,13 +72,6 @@ class Transaction
       return tag
     end
 
-    def self.current_mth_year_spend()
-      current_month = Transaction.current_month_no()
-      current_year = Transaction.current_year()
-      current_mth_year_spend = Transaction.mth_yr_tot_amt(current_month, current_year)
-      return current_mth_year_spend
-    end
-    
     def self.current_date()
       current_date = Date.today.to_s
       return current_date
@@ -91,6 +85,13 @@ class Transaction
     def self.current_year()
       current_year = Date.today.strftime("%Y")
       return current_year
+    end
+
+    def self.current_mth_year_spend()
+      current_month = Transaction.current_month_no()
+      current_year = Transaction.current_year()
+      current_month_year_spend = Transaction.mth_yr_tot_amt(current_month, current_year)
+      return current_month_year_spend
     end
 
     def self.all()
@@ -157,7 +158,7 @@ class Transaction
       EXTRACT(YEAR FROM transaction_date) = $2"
 
       values = [month_no, year]
-      mth_yr_tag_tot_amt = SqlRunner.run(sql, values)
+      mth_yr_tot_amt = SqlRunner.run(sql, values)
       return mth_yr_tot_amt.first()['sum'].to_f.round(2)
 
     end
