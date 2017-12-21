@@ -25,33 +25,42 @@ post('/budgets') do
 
   @budget = Budget.new(params)
   @budget.save()
-
-  # redirect to("/budgets")
+  redirect to("/budgets")
 end
 
 # SHOW route
 
 get '/budgets/:id' do
   @budget = Budget.find(params['id'].to_i)
-  # month_no = @budget.month_no
-  # year = @budget.year
-  # tag_id = @budget.tag_id
   @actual_spend = @budget.mth_yr_tag_tot_amt()
   @remaining_amount = @budget.remaining_amount()
-  # @actual_spend = Budget.mth_yr_tag_tot_amt()
-
   erb( :"budgets/show" )
 end
 
 # EDIT route
 
 get('/budgets/:id/edit') do
+  @months = Month.all()
+  @tags = Tag.all()
   @budget = Budget.find(params[:id])
   erb(:"budgets/edit")
 end
 
+# Update not working - need to check edit.erb - month_no
 post('/budgets/:id') do
   @budget = Budget.new(params)
   @budget.update
   redirect "/budgets/#{@budget.id}"
+end
+
+
+# DELETE route
+
+post('/budgets/:id/delete') do
+  id = params[:id]
+  @budget = Budget.find(id)
+  @budget.delete()
+
+  redirect "/budgets"
+
 end

@@ -13,7 +13,7 @@ get('/transactions') do
   @total_amount = Transaction.total_amount()
   # Extension- monthly budget and over budget can be refactored into method
   # within transaction.rb
-  @monthly_budget = 100.00
+  @monthly_budget = 50.00
   @over_budget = (@total_amount - @monthly_budget).round(2)
   erb(:"transactions/index")
 end
@@ -21,6 +21,7 @@ end
 # NEW route
 
 get('/transactions/new') do
+  # @current_date = Transaction.current_date()
   @vendors = Vendor.all()
   @tags = Tag.all()
   erb(:"transactions/new")

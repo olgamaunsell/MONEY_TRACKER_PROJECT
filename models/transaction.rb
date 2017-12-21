@@ -1,5 +1,5 @@
 require_relative('../db/sql_runner.rb')
-require( 'pry-byebug' )
+require('date')
 
 class Transaction
 
@@ -71,6 +71,28 @@ class Transaction
       return tag
     end
 
+    def self.current_mth_year_spend()
+      current_month = Transaction.current_month_no()
+      current_year = Transaction.current_year()
+      current_mth_year_spend = Transaction.mth_yr_tot_amt(current_month, current_year)
+      return current_mth_year_spend
+    end
+    
+    def self.current_date()
+      current_date = Date.today.to_s
+      return current_date
+    end
+
+    def self.current_month_no()
+      current_month = Date.today.strftime("%m")
+      return current_month
+    end
+
+    def self.current_year()
+      current_year = Date.today.strftime("%Y")
+      return current_year
+    end
+
     def self.all()
       sql = "SELECT * FROM transactions ORDER BY transactions.transaction_date DESC"
       values = []
@@ -129,6 +151,17 @@ class Transaction
       return total_amount.first()['sum'].to_f
     end
 
+    def self.mth_yr_tot_amt(month_no, year)
+      sql = "SELECT SUM (amount) FROM transactions
+      WHERE EXTRACT(MONTH FROM transaction_date) = $1 AND
+      EXTRACT(YEAR FROM transaction_date) = $2"
+
+      values = [month_no, year]
+      mth_yr_tag_tot_amt = SqlRunner.run(sql, values)
+      return mth_yr_tot_amt.first()['sum'].to_f.round(2)
+
+    end
+
     def self.mth_yr_tag_tot_amt(month_no, year, tag_id)
       sql = "SELECT SUM (amount) FROM transactions
       WHERE EXTRACT(MONTH FROM transaction_date) = $1 AND
@@ -138,11 +171,10 @@ class Transaction
       values = [month_no, year, tag_id]
       mth_yr_tag_tot_amt = SqlRunner.run(sql, values)
       return mth_yr_tag_tot_amt.first()['sum'].to_f.round(2)
-  
+
     end
 
-# this can be refactored out when above method working
-    def self.tag_month_total_amount(tag_id)
+    def self.tag_total_amount(tag_id)
       sql = "SELECT SUM (amount) FROM transactions
       WHERE tag_id = $1"
 

@@ -17,13 +17,12 @@
 
   <% @budgets.each do |budget| %>
   <tr>
-<!-- need to convert the number to month name -->
     <td><%= budget.month_name %></td>
     <td><%= budget.year %></td>
     <td><%= budget.name %></td>
     <td><%= budget.tag.name %></td>
     <td><%= budget.monthly_limit %></td>
-    <td><a href="/budgets/<%= budget.id %>"></td>
+    <td><a href="/budgets/<%= budget.id %>">Budget Details</td>
     <td></td>
   </tr>
   <% end %>

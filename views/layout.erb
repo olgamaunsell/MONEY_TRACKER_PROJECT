@@ -3,16 +3,14 @@
   <head>
     <meta charset="utf-8">
     <title>Money Tracker</title>
-      <!-- <link href="https://fonts.googleapis.com/css?family=Merriweather|Special+Elite" rel="stylesheet"> -->
-<!-- <link rel="icon" href="/images/photo.png" /> -->
-<!-- <link rel="stylesheet" type="text/css" href="/styles/buttons.css">
-<link rel="stylesheet" type="text/css" href="/styles/forms.css">
-<link rel="stylesheet" type="text/css" href="/styles/structure.css"> -->
-
+      <link href="https://fonts.googleapis.com/css?family=Merriweather|Noto+Serif" rel="stylesheet">
+      <link rel="icon" href="/images/photo.png" />
+      <link rel="stylesheet" type="text/css" href="/styles/buttons.css">
+      <link rel="stylesheet" type="text/css" href="/styles/forms.css">
+      <link rel="stylesheet" type="text/css" href="/styles/structure.css">
       <link rel="stylesheet" type="text/css" href="styles/tables.css">
   </head>
   <body>
-    <main class ="">
       <nav>
         <ul>
           <li>
@@ -27,12 +25,17 @@
           <li>
             <a href="/budgets">Budgets</a>
           </li>
+          <li>
+            <a href="/">About Money Tracker</a>
+          </li>
         </ul>
       </nav>
-      <section id="content">
-      <%= yield %>
-      </section>
-    </main>
+        <main class ="flex">
+          <section id="content">
+          <%= yield %>
+          </section>
+        </main>
+
     <footer>
       <br>
       <em>Copyright 2017 - All rights reserved</em>

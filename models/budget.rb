@@ -19,15 +19,6 @@ class Budget
     return monthly_limit
   end
 
-  def display_2_dec_places(amount)
-    amount_s = amount.to_s
-    amount_arr = amount_s.split('')
-    if amount_arr[-3] != '.'
-      amount_arr.insert(-1,'0')
-    end
-    return amount = amount_arr.join()
-  end
-
   def save()
     sql = "INSERT INTO budgets
     (month_no, year, name, tag_id, monthly_limit)
@@ -52,6 +43,13 @@ class Budget
     SqlRunner.run( sql, values )
   end
 
+  def delete()
+    sql = "DELETE FROM budgets
+    WHERE id = $1"
+    values = [@id]
+    SqlRunner.run( sql, values )
+  end
+
   def tag()
     tag = Tag.find(@tag_id)
     return tag
@@ -59,8 +57,18 @@ class Budget
 
   def month_name()
     month_name = Month.find_month_name(@month_no.to_s)
+    return month_name
   end
 
+  def display_2_dec_places(amount)
+    amount_s = amount.to_s
+    amount_arr = amount_s.split('')
+    if amount_arr[-3] != '.'
+      amount_arr.insert(-1,'0')
+    end
+    return amount = amount_arr.join()
+  end
+  
   def mth_yr_tag_tot_amt()
     actual_spend = Transaction.mth_yr_tag_tot_amt(@month_no, @year, @tag_id)
     actual_spend_display = display_2_dec_places(actual_spend)
@@ -73,8 +81,6 @@ class Budget
     remaining_amount_display = display_2_dec_places(remaining_amount)
     return remaining_amount_display
   end
-
-
 
   def self.all()
     sql = "SELECT * FROM budgets

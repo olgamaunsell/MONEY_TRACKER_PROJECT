@@ -1,19 +1,20 @@
-th {
+th, td {
   text-align: left;
 }
 
 td {
   padding: 5px 10px 0px 0px;
-  text-align: center;
+  color: black;
 }
 
 th {
   padding: 0px 10px 5px 0px;
   border-bottom: 1px solid rgb(244, 143, 65) ;
+  color: maroon;
+
 }
 
 table {
-  border-collapse: collapse;
   border: 2px solid rgb(200,200,200);
   letter-spacing: 1px;
   font-size: 0.8rem;
