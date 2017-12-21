@@ -68,7 +68,7 @@ photo {
   background: url('/images/money.jpg')
 }
 
-.warning {
+.red-text {
   color: red;
   font-size: 1.2rem;
 }
