@@ -7,8 +7,8 @@
 <p>Tag: <%= @budget.tag.name %></p>
 <p>Monthly Limit: <%= @budget.monthly_limit %></p>
 
-<p>Actual Spend: £ <%=@actual_spend %> </p>
-<p>Remaining Amount: £ <%=@remaining_amount %> </p>
+<p>Actual Spend: &pound; <%=@actual_spend %> </p>
+<p>Remaining Amount: &pound; <%=@remaining_amount %> </p>
 
 <form class="" action="/budgets/<%= @budget.id %>/edit" method="get">
   <input class="button" type="submit" name="" value="Edit Budget">

@@ -15,19 +15,20 @@
     <select name="year" id="year-select">
       <option value="2017">2017</option>
       <option value="2018">2018</option>
+    </select>
   </div>
 
-  <label for="name-input">Name:</label>
-  <input id="name-input" type="text" name="name" value="">
-
   <div class="form-drop-down">
-       <label for="tag-select">Category:</label>
+       <label for="tag-select">Tag:</label>
        <select name="tag_id" id="tag-select">
          <% @tags.each do |tag| %>
              <option value=<%= tag.id %>><%= tag.name.capitalize %></option>
          <% end %>
        </select>
   </div>
+
+  <label for="name-input">Name:</label>
+  <input id="name-input" type="text" name="name" value="">
 
   <label for="monthly_limit-input">Monthly Limit:</label>
   <input id=" monthly_limit-input" type="number" step="0.01" placeholder="0.00" name="monthly_limit" value="">
