@@ -101,7 +101,7 @@ class Transaction
 
       # If over budget the method will return a positive
       # amount to display on screen i.e the over budget amount
-      over_budget = ( current_mth_budget - current_mth_spend).round(2)
+      over_budget = ( current_mth_spend - current_mth_budget).round(2)
       return over_budget
     end
 
