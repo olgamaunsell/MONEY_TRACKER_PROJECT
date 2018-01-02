@@ -13,7 +13,7 @@
   </div>
 
   <div class="form-drop-down">
-       <label for="tag-select">Category:</label>
+       <label for="tag-select">Tag:</label>
        <select name="tag_id" id="tag-select">
          <% @tags.each do |tag| %>
              <option value=<%= tag.id %>><%= tag.name.capitalize %></option>
