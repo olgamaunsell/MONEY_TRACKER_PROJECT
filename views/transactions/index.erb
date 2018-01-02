@@ -9,21 +9,18 @@
       <th scope="col">Vendor</th>
       <th scope="col">Tag</th>
       <th scope="col">Date</th>
-      <th scope="col">£ Amount </th>
+      <th scope="col">Amount </th>
       <th scope="col">Comment</th>
-      <th scope="col">Transaction Details</th>
     </tr>
   </thead>
 <tbody>
   <% @transactions.each do |transaction|  %>
   <tr>
-    <td><%= transaction.vendor.name %></td>
+    <td><a href="/transactions/<%= transaction.id %>"><%= transaction.vendor.name %></a></td>
     <td><%= transaction.tag.name %></td>
     <td><%= transaction.transaction_date %></td>
-    <td><%= transaction.amount %></td>
+    <td>&pound; <%= transaction.amount %></td>
     <td><%= transaction.comment %></td>
-
-    <td><a href="/transactions/<%= transaction.id %>">Transaction details</a></td>
   </tr>
   <% end %>
   <tr class="blank_row">
