@@ -4,10 +4,16 @@
 
 <p> </p>
 <table>
+  <thead>
+    <tr>
+      <th scope="col">Tag</th>
+      <th scope="col">Total Expenditure </th>
+    </tr>
+  </thead>
   <% @tags.each do |tag| %>
   <tr>
     <td><a href="/tags/<%= tag.id %>"><%= tag.name %></a></td>
-    <td></td>
+    <td>&pound; <%='%.2f' % Transaction.tag_total_amount(tag.id) %></td>
   </tr>
   <% end %>
 </table>

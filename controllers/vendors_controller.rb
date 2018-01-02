@@ -27,7 +27,6 @@ end
 
 get '/vendors/:id' do
   @vendor = Vendor.find(params['id'].to_i)
-  @vendor_total_amount = Transaction.vendor_total_amount(@vendor.id)
   erb( :"vendors/show" )
 end
 
