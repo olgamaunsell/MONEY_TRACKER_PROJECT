@@ -9,7 +9,7 @@
       <th scope="col">Vendor</th>
       <th scope="col">Tag</th>
       <th scope="col">Date</th>
-      <th scope="col">Amount </th>
+      <th scope="col" colspan="2">Amount</th>
       <th scope="col">Comment</th>
     </tr>
   </thead>
@@ -19,7 +19,8 @@
     <td><a href="/transactions/<%= transaction.id %>"><%= transaction.vendor.name %></a></td>
     <td><%= transaction.tag.name %></td>
     <td><%= transaction.transaction_date %></td>
-    <td>&pound; <%= transaction.amount %></td>
+    <td>&pound; </td>
+    <td class="align-right"><%= transaction.amount %></td>
     <td><%= transaction.comment %></td>
   </tr>
   <% end %>
@@ -30,7 +31,8 @@
 <tfoot>
   <tr>
     <td scope="row" colspan="3"><span class="Total">Total Transactions</span></td>
-    <td colspan="4">&pound; <%= @total_amount %></td>
+    <td colspan="1"> &pound; </td>
+    <td class="align-right" colspan="1" ><%= @total_amount %></td>
   </tr>
 </tfoot>
 </table>
